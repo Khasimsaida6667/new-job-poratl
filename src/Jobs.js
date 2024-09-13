@@ -17,7 +17,7 @@ function Jobs({ addBookmark }) {
     try {
       const response = await axios.get(`https://testapi.getlokalapp.com/common/jobs?page=${page}`);
       
-    
+      
       console.log(response.data); 
 
       if (response.data && Array.isArray(response.data.results)) {
@@ -65,7 +65,7 @@ function Jobs({ addBookmark }) {
           ))}
           
           <Link to={`/job/${job.id}`}>View Details</Link>
-          <button className="bookmark-btn" onClick={() => addBookmark(job)}>Bookmark</button> 
+          <button onClick={() => addBookmark(job)}>Bookmark</button> 
         </div>
       ))}
 
@@ -79,4 +79,3 @@ function Jobs({ addBookmark }) {
 }
 
 export default Jobs;
-

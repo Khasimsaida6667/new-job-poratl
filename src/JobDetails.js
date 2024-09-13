@@ -5,66 +5,70 @@ import './JobDetails.css';
 
 function JobDetails() {
   const { id } = useParams();
-  const [jb, setJb] = useState(null);
-  const [load, setLoad] = useState(true);
-  const [err, setErr] = useState(null);
+  const [job, setJob] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchJobDetails = async () => {
-      setLoad(true);
-      setErr(null);
+      setIsLoading(true);
+      setError(null);
       try {
-        const resp = await axios.get(`https://testapi.getlokalapp.com/common/jobs/${id}`);
-        setJb(resp.data);
-      } catch (error) {
-        setErr('Failed to fetch job details. Please try again.');
+        const response = await axios.get(`https://testapi.getlokalapp.com/common/jobs/${id}`);
+        console.log(response.data);  // Log response to inspect the data structure
+        setJob(response.data);
+      } catch (err) {
+        setError('Failed to fetch job details. Please try again.');
       }
-      setLoad(false);
+      setIsLoading(false);
     };
 
     fetchJobDetails();
   }, [id]);
 
-  if (load) {
+  if (isLoading) {
     return <div className="loading">Loading...</div>;
   }
 
-  if (err) {
-    return <div className="error">{err}</div>;
+  if (error) {
+    return <div className="error">{error}</div>;
   }
 
-  if (!jb) {
+  if (!job) {
     return <div className="not-found">Job not found</div>;
   }
 
   return (
     <div className="job-details">
-      <h1>{jb.title}</h1>
-      <p><strong>Location:</strong> {jb.primary_details.Place}</p>
-      <p><strong>Salary:</strong> {jb.primary_details.Salary !== "-" ? jb.primary_details.Salary : "Not specified"}</p>
-      <p><strong>Job Type:</strong> {jb.primary_details.Job_Type}</p>
-      <p><strong>Experience:</strong> {jb.primary_details.Experience}</p>
-      <p><strong>Qualification:</strong> {jb.primary_details.Qualification}</p>
-      <p><strong>Company:</strong> {jb.company_name}</p>
-      {jb.job_tags && (
+      <h1>{job.title}</h1>
+      <p><strong>Location:</strong> {job.primary_details?.Place || "Not specified"}</p>
+      <p><strong>Salary:</strong> {job.primary_details?.Salary && job.primary_details.Salary !== "-" ? job.primary_details.Salary : "Not specified"}</p>
+      <p><strong>Job Type:</strong> {job.primary_details?.Job_Type || "Not specified"}</p>
+      <p><strong>Experience:</strong> {job.primary_details?.Experience || "Not specified"}</p>
+      <p><strong>Qualification:</strong> {job.primary_details?.Qualification || "Not specified"}</p>
+      <p><strong>Company:</strong> {job.company_name}</p>
+
+      {job.job_tags && (
         <div className="job-tags">
           <strong>Tags:</strong>
-          {jb.job_tags.map((tag, idx) => (
-            <span key={idx} className="job-tag" style={{backgroundColor: tag.bg_color, color: tag.text_color}}>
+          {job.job_tags.map((tag, index) => (
+            <span key={index} className="job-tag" style={{ backgroundColor: tag.bg_color, color: tag.text_color }}>
               {tag.value}
             </span>
           ))}
         </div>
       )}
-      {jb.contentV3 && jb.contentV3.V3 && (
+
+      {job.contentV3?.V3 && (
         <div className="additional-details">
           <h2>Additional Details</h2>
-          {jb.contentV3.V3.map((item, idx) => (
-            <p key={idx}><strong>{item.field_name}:</strong> {item.field_value}</p>
+          {job.contentV3.V3.map((item, index) => (
+            <p key={index}><strong>{item.field_name}:</strong> {item.field_value || "Not specified"}</p>
           ))}
         </div>
       )}
-      {jb.other_details && <p><strong>Other Details:</strong> {jb.other_details}</p>}
+
+      {job.other_details && <p><strong>Other Details:</strong> {job.other_details}</p>}
     </div>
   );
 }
