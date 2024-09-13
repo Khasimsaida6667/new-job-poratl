@@ -65,7 +65,7 @@ function Jobs({ addBookmark }) {
           ))}
           
           <Link to={`/job/${job.id}`}>View Details</Link>
-          <button onClick={() => addBookmark(job)}>Bookmark</button> 
+          <button className="bookmark-btn"onClick={() => addBookmark(job)}>Bookmark</button> 
         </div>
       ))}
 
