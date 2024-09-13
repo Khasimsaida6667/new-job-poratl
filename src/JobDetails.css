@@ -1,0 +1,32 @@
+.job-details {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 60px;
+  }
+  
+  .job-details h1 {
+    color: #333;
+    margin-top: 0;
+  }
+  
+  .job-details p {
+    margin: 10px 0;
+    color: #666;
+  }
+  
+  .job-details strong {
+    color: #333;
+  }
+  
+  .loading, .error, .not-found {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: #666;
+  }
+  
+  .error {
+    color: #dc3545;
+  }

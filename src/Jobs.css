@@ -1,0 +1,87 @@
+.jobs {
+    padding-bottom: 60px;
+  }
+  
+  .job-card {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .job-card h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .job-card p {
+    margin: 5px 0;
+    color: #666;
+  }
+  
+  .job-card a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .job-card button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .job-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 12px;
+    font-size: 0.8em;
+  }
+  
+  .load-more {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .loading, .error, .no-jobs {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: #666;
+  }
+  
+  .error {
+    color: #dc3545;
+  }
+  .bookmark-btn {
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    padding: 10px 15px; 
+    border-radius: 4px; 
+    cursor: pointer;
+    font-size: 14px; 
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+  }
+  
+  .bookmark-btn:hover {
+    background-color: #0056b3; 
+  }
+  
+  .bookmark-btn:active {
+    transform: scale(0.98); 
+  }
+  

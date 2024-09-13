@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Jobs Component
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This README provides an overview of the Jobs component, which is part of a React application for displaying job listings.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+The Jobs component fetches job data from an API and displays it in a user-friendly format. It includes features such as pagination, bookmarking, and error handling.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Fetches job listings from an API
+- Displays job details including title, company, location, salary, job type, experience, and qualifications
+- Supports pagination with a "Load More" button
+- Allows bookmarking of jobs
+- Handles loading states and errors
+- Responsive design for various screen sizes
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+1. Ensure you have React and its dependencies installed in your project.
+2. Install additional required packages:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm install axios react-router-dom
+```
 
-### `npm run build`
+3. Copy the `Jobs.js` file into your project's components directory.
+4. Create a `Jobs.css` file in the same directory for styling.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To use the Jobs component in your React application:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Import the component:
 
-### `npm run eject`
+```javascript
+import Jobs from './path/to/Jobs';
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Use the component in your JSX, passing the required props:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```jsx
+<Jobs addBookmark={yourBookmarkFunction} />
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Make sure to implement the `addBookmark` function in your parent component or context.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Props
 
-## Learn More
+- `addBookmark` (Function): A function to handle bookmarking jobs. It receives the job object as an argument.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## API Integration
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The component expects the API to return data in the following format:
 
-### Code Splitting
+```json
+{
+  "results": [
+    {
+      "id": 123,
+      "title": "Job Title",
+      "company_name": "Company Name",
+      "primary_details": {
+        "Place": "Location",
+        "Salary": "Salary Range",
+        "Job_Type": "Job Type",
+        "Experience": "Required Experience",
+        "Qualification": "Required Qualification"
+      },
+      "job_tags": [
+        {
+          "value": "Tag Text",
+          "bg_color": "#ColorCode",
+          "text_color": "#ColorCode"
+        }
+      ]
+    }
+    // ... more job listings
+  ]
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Ensure your API endpoint (`https://testapi.getlokalapp.com/common/jobs`) returns data in this format.
 
-### Analyzing the Bundle Size
+## Customization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+You can customize the appearance of the component by modifying the `Jobs.css` file. The component uses BEM-like class naming for easy styling.
 
-### Making a Progressive Web App
+## Error Handling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The component includes basic error handling. If the API request fails, an error message will be displayed to the user.
 
-### Advanced Configuration
+## Future Improvements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Implement advanced filtering and sorting options
+- Add a search functionality
+- Improve accessibility features
+- Implement unit and integration tests
 
-### Deployment
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Contributions to improve the Jobs component are welcome. Please ensure you follow the existing code style and include appropriate tests for any new features.
 
-### `npm run build` fails to minify
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Include your license information here]
